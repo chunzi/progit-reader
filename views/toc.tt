@@ -1,0 +1,27 @@
+[% nav = BLOCK %]
+    <div class="nav">
+        <a href="/">home</a>
+    </div>
+[% END %]
+
+
+<div class="page">
+[% nav %]
+<ul class="toc">
+[% ch = 0 %]
+[% FOREACH chapter = chapters %]
+[% ch = ch + 1 %]
+[% se = 0 %]
+    <li><h1>[% ch %]. <a href="/[% lang %]/ch[% ch %]-[% se %].html">[% chapter.title %]</a></h1></li>
+    <ul>
+    [% FOREACH section = chapter.sections %]
+    [% IF se > 0 %]
+        <li>[% ch %].[% se %] - <a href="/[% lang %]/ch[% ch %]-[% se %].html">[% section.title %]</a></li>
+    [% END %]
+    [% se = se + 1 %]
+    [% END %]
+    </ul>
+[% END %]
+</ul>
+[% nav %]
+</div>

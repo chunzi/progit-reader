@@ -1,0 +1,12 @@
+[% nav = BLOCK %]
+    <div class="nav">
+        <a href="/">home</a> - <a href="/[% lang %]">toc</a> - <a href="[% prev_page %]">prev</a> - <a href="[% next_page %]">next</a>
+    </div>
+[% END %]
+
+<div class="page">
+[% nav %]
+<div class="path">[% path %]</div>
+<div class="content">[% content %]</div>
+[% nav %]
+</div>

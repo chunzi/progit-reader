@@ -14,6 +14,12 @@ before sub {
     var repos => $repos;
 };
 
+get '/figures/:name' => sub {
+    my $name = params->{'name'};
+    my $file = $repos->subdir('figures')->file($name)->stringify;
+    send_file $file, system_path => 1;
+};
+
 get '/' => sub {
     my @langs = grep { /^[a-z]{2}(-[a-z]{2})?$/  }
         map { $_->dir_list(-1) } grep { -d $_ } $repos->children;
@@ -49,9 +55,11 @@ get '/:lang/:page' => sub {
     }
 
     my $text = $sections->[$section]->{'content'};
+    $text =~ s{Insert\s+(.*?)\.png\s*\n?\s*(.*?)\n}{![\2](/figures/\1-tn.png "\2")\n\n\2\n}sg;
+
     my $m = Text::Markdown->new;
     my $html = $m->markdown($text);
-    $html =~ s/Insert\s+18333fig(\d{2})(\d{2})\.png/sprintf qq{<p><img src="\/static\/images\/%d\.%d\.png"><\/p>},$1,$2/seg;
+    #$html =~ s/Insert\s+18333fig(\d{2})(\d{2})\.png/sprintf qq{<p><img src="\/static\/images\/%d\.%d\.png"><\/p>},$1,$2/seg;
 
     var lang => $lang;
     var content => $html;

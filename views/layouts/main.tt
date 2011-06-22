@@ -7,6 +7,22 @@
     <link rel="stylesheet" href="[% request.uri_base %]/css/style.css" />
 </head>
 <body>
+
+<div class="container">
+    <div class="nav">
+        <a href="/">home</a>
+        [% IF lan.page %]
+         - <a href="/[% lan.lang %]">toc</a> - <a href="[% lan.prev %]">prev</a>
+         - <a href="[% lan.next %]">next</a>
+         [% IF paras %]
+         - <a href="/[% lan.lang %]/[% lan.page %]">[% lan.lang %]</a>
+         [% ELSE %]
+         - <a href="/pair/[% lan.lang %]/[% lan.page %]">pair</a>
+         [% END %]
+        [% END %]
+    </div>
     [% content %]
+</div>
+
 </body>
 </html>

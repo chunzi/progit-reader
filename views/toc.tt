@@ -1,12 +1,5 @@
-[% nav = BLOCK %]
-    <div class="nav">
-        <a href="/">home</a>
-    </div>
-[% END %]
-
 
 <div class="page">
-[% nav %]
 <ul class="toc">
 [% ch = 0 %]
 [% FOREACH chapter = chapters %]
@@ -23,5 +16,4 @@
     </ul>
 [% END %]
 </ul>
-[% nav %]
 </div>

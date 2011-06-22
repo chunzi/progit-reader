@@ -39,34 +39,63 @@ get '/:lang' => sub {
 get '/:lang/:page' => sub {
     my $lang = params->{'lang'};
     my $page = params->{'page'};
+    my $lan = get_page( $lang, $page );
+    var lan => $lan;
+    template 'page', vars;
+};
+
+get '/pair/:lang/:page' => sub {
+    my $lang = params->{'lang'};
+    my $page = params->{'page'};
+
+    my $eng = get_page( 'en', $page );
+    my $lan = get_page( $lang, $page );
+    var lan => $lan;
+    var eng => $eng;
+
+    my @eng_para = split /\n\n/, $eng->{'html'};
+    my @lan_para = split /\n\n/, $lan->{'html'};
+
+    my @paras = ();
+    while( scalar @eng_para and scalar @lan_para ){
+        push @paras, { eng => shift @eng_para, lan => shift @lan_para };
+    }
+    var paras => \@paras;
+
+    template 'pair', vars;
+};
+
+sub get_page {
+    my $lang = shift;
+    my $page = shift;
+
     my ( $chapters, $chain ) = chapters_for_lang( $lang );
 
     my ( $chapter, $section ) = map { int($_) } ( $page =~ /^ch(\d+)-(\d+)\.html$/ );
     $chapter = 1 if $chapter < 1; $chapter = scalar @$chapters if $chapter > scalar @$chapters;
     my $sections = $chapters->[$chapter-1]{'sections'};
     $section = 0 if $section < 0; $section = scalar @$sections if $section > scalar @$sections;
+
+    my $path = $chapters->[$chapter-1]{'path'};
     
     my $this = sprintf "ch%d-%d.html", $chapter, $section;
+    my $prev = $this; 
+    my $next = $this;
     for my $pos ( 0 .. $#{$chain} ){
         if ( $chain->[$pos] eq $this ){
-            var prev_page => $chain->[$pos-1]; 
-            var next_page => $chain->[$pos+1]; 
+            $prev = $chain->[$pos-1]; 
+            $next = $chain->[$pos+1]; 
         }
     }
 
     my $text = $sections->[$section]->{'content'};
-    $text =~ s{Insert\s+(.*?)\.png\s*\n?\s*(.*?)\n}{![\2](/figures/\1-tn.png "\2")\n\n\2\n}sg;
+    $text =~ s{Insert\s+(.*?)\.png\s*\n?\s*(.*?)\n}{![$2](/figures/$1-tn.png "$2")\n\n$2\n}sg;
 
     my $m = Text::Markdown->new;
     my $html = $m->markdown($text);
-    #$html =~ s/Insert\s+18333fig(\d{2})(\d{2})\.png/sprintf qq{<p><img src="\/static\/images\/%d\.%d\.png"><\/p>},$1,$2/seg;
 
-    var lang => $lang;
-    var content => $html;
-    var path => $chapters->[$chapter-1]{'path'};
-    template 'page', vars;
-};
-
+    return { lang => $lang, page => $page, html => $html, prev => $prev, next => $next, path => $path };
+}
 
 sub chapters_for_lang {
     my $lang = shift;

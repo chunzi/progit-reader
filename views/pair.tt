@@ -1,0 +1,18 @@
+<style>
+    .container { width: 100%; }
+    td.eng { width: 50%; vertical-align: top; padding-right: 10px; }
+    td.lan { width: 50%; vertical-align: top; padding-left: 10px; }
+    .content p { margin: 0; margin-bottom: 20px; }
+</style>
+
+<div class="content">
+<table cellpadding="0" cellspacing="0" border="0">
+[% FOREACH para = paras %]
+<tr>
+    <td class="eng">[% para.eng %]</td>
+    <td class="lan">[% para.lan %]</td>
+</tr>
+[% END %]
+</table>
+</div>
+

@@ -1,18 +1,19 @@
-body { margin: 2em; background-color: #fff; color: #333; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 13px; }
-pre { background: #F6F6F6; padding: 1em; overflow: auto; font-family: "Consolas","Courier New",Courier,mono; font-size: 0.9em; color: #C00; }
+body { margin: 2em; background-color: #fff; color: #333; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 0.9em; }
+pre { background: #F6F6F6; padding: 0.7em; overflow: auto; font-family: "Consolas","Courier New",Courier,mono; color: #C00; }
+p code { color: #C00; padding: 0 0.3em; }
 a  { color: #03c }
 a:hover { text-decoration: none; }
 
 
 ul.toc  { list-style: none; margin: 0; }
 ul.toc ul  { list-style: none; }
-ul.languages { list-style: none; margin-top: 10em; }
-ul.languages li { font-size: 2em; float: left; margin-right: 1em; margin-bottom: 0.5em; }
+ul.languages { list-style: none; margin-top: 5em; padding: 20px; }
+ul.languages li { font-size: 2em; float: left; margin: 0 1em 1em 0; padding: 0; }
 
 
+.container { width: 800px; margin: 0 auto; }
 .nav { color: silver; }
-.page { width: 800px; margin: 0 auto; }
-.content { font-size: 1.2em; }
+.content { font-size: 1.2em; color: #333; }
 .content p { line-height: 1.6em; margin: 1em 0; }
 .content h3 { margin-top: 2.4em; }
 .path { margin: 1em 0; color: gray; }

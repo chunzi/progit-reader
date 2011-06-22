@@ -1,6 +1,4 @@
 body { margin: 2em; background-color: #fff; color: #333; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 0.9em; }
-pre { background: #F6F6F6; padding: 0.7em; overflow: auto; font-family: "Consolas","Courier New",Courier,mono; color: #C00; }
-p code { color: #C00; padding: 0 0.3em; }
 a  { color: #03c }
 a:hover { text-decoration: none; }
 
@@ -11,9 +9,11 @@ ul.languages { list-style: none; margin-top: 5em; padding: 20px; }
 ul.languages li { font-size: 2em; float: left; margin: 0 1em 1em 0; padding: 0; }
 
 
-.container { width: 800px; margin: 0 auto; }
 .nav { color: silver; }
-.content { font-size: 1.1em; color: #333; }
-.content p { line-height: 1.6em; margin: 1em 0; }
-.content h3 { margin-top: 2.4em; }
 .path { margin: 0.9em 0; color: gray; }
+.container { width: 800px; margin: 0 auto; }
+.content { font-size: 1.1em; color: #333; }
+.content p { line-height: 1.4em; margin: 1em 0; }
+.content p code { color: #C00; padding: 0 0.3em; }
+.content pre { font-size: 1.1em; background: #F6F6F6; padding: 0.7em; overflow: auto; font-family: "Consolas","Courier New",Courier,mono; color: #C00; }
+.content h3 { margin-top: 2.4em; }

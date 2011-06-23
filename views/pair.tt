@@ -2,7 +2,7 @@
     .container { width: 100%; }
     td.eng { width: 50%; vertical-align: top; padding-right: 1.5em; }
     td.lan { width: 50%; vertical-align: top; padding-left: 1.5em; }
-    .content p { margin: 0; margin-bottom: 20px; }
+    .content p { margin: 0.5em 0; }
 </style>
 
 <div class="content">

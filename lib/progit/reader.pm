@@ -53,8 +53,13 @@ get '/pair/:lang/:page' => sub {
     var lan => $lan;
     var eng => $eng;
 
-    my @eng_para = split /\n\n/, $eng->{'html'};
-    my @lan_para = split /\n\n/, $lan->{'html'};
+
+    
+#my $regex = qr/(?:(?<=>)?\n\n(?>=<[a-z]))/smx;
+    my $regex = qr/(?<=>)(?=\n\n<)/smx;
+    my @eng_para = split $regex, $eng->{'html'};
+    my @lan_para = split $regex, $lan->{'html'};
+
 
     my @paras = ();
     while( scalar @eng_para and scalar @lan_para ){

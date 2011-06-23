@@ -14,6 +14,6 @@ ul.languages li { font-size: 2em; float: left; margin: 0 1em 1em 0; padding: 0; 
 .container { width: 800px; margin: 0 auto; }
 .content { font-size: 1.1em; color: #333; }
 .content p { line-height: 1.4em; margin: 1em 0; }
-.content p code { color: #C00; padding: 0 0.3em; }
+.content p code { color: #C00; }
 .content pre { font-size: 1.1em; background: #F6F6F6; padding: 0.7em; overflow: auto; font-family: "Consolas","Courier New",Courier,mono; color: #C00; }
 .content h3 { margin-top: 2.4em; }
